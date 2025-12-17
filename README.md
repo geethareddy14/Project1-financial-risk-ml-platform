@@ -33,3 +33,8 @@ python inference/batch_scoring/batch_score.py
 pip install -r requirements.txt
 uvicorn inference.real_time_api.app:app --reload
 
+
+
+## ✅ Data Quality (Demo)
+```bash
+python data_quality/basic_checks.py
