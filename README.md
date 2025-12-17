@@ -1,4 +1,6 @@
 # Project1-financial-risk-ml-platform
 
 
-print("Hello Geetha")
+## 🏗️ High-Level Architecture
+![Architecture](architecture/platform_architecture.md)
+
