@@ -1,6 +1,7 @@
 # Project1-financial-risk-ml-platform
 
 
-## 🏗️ High-Level Architecture
-![Architecture](architecture/platform_architecture.md)
 
+
+
+>>>>>>> ee31d171b9b291ea5681f5cfafa8dcab2c691147
