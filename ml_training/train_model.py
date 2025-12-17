@@ -32,6 +32,10 @@ def main():
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train, y_train)
 
+    Path("models").mkdir(exist_ok=True)
+    joblib.dump(model, "models/logreg.joblib")
+    print("✅ Saved model to models/logreg.joblib")
+
     probs = model.predict_proba(X_test)[:, 1]
     preds = (probs >= 0.5).astype(int)
 
