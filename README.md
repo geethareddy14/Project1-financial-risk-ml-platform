@@ -23,3 +23,13 @@ python ml_training/export_gold_to_csv.py
 # out/gold/risk_features.csv
 
 python ml_training/train_model.py
+
+## ⚡ Inference
+
+### Batch scoring
+```bash
+python inference/batch_scoring/batch_score.py
+
+pip install -r requirements.txt
+uvicorn inference.real_time_api.app:app --reload
+
