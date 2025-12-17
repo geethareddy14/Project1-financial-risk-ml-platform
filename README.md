@@ -14,3 +14,12 @@ python data_processing/silver/silver_clean.py
 python data_processing/gold/gold_features.py
 
 
+## 🧠 Model Training (Local Demo)
+```bash
+pip install pyspark pandas scikit-learn
+
+python ml_training/export_gold_to_csv.py
+# Copy the generated part-*.csv from out/gold/risk_features_csv/ into:
+# out/gold/risk_features.csv
+
+python ml_training/train_model.py
