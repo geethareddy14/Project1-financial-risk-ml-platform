@@ -1,5 +1,13 @@
 # Monitoring Plan (Production)
 
+## ⭐ Highlights
+- Bronze → Silver → Gold pipeline design (enterprise pattern)
+- Feature table generation for risk modeling
+- Optional MLflow experiment tracking
+- Batch scoring + real-time API skeleton
+- Data quality checks + monitoring plan (production mindset)
+
+  
 ## What we monitor
 ### Data Quality (upstream)
 - Null rate / missing critical fields
