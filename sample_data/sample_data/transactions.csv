@@ -1,0 +1,4 @@
+transaction_id,account_id,amount,merchant_category,timestamp,is_fraud
+t1,a1,120.50,travel,2025-12-01T10:10:00Z,0
+t2,a2,999.99,electronics,2025-12-01T10:12:00Z,1
+t3,a1,15.25,grocery,2025-12-01T11:05:00Z,0
