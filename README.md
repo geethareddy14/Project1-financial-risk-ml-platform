@@ -38,3 +38,9 @@ uvicorn inference.real_time_api.app:app --reload
 ## ✅ Data Quality (Demo)
 ```bash
 python data_quality/basic_checks.py
+
+## 📈 Results (Demo)
+- Generated account-level risk features used for binary fraud prediction
+- Achieved stable model training with end-to-end reproducibility
+- Designed batch and real-time inference patterns used in financial systems
+
