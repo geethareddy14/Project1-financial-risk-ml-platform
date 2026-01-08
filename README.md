@@ -1,5 +1,15 @@
 # Project1-financial-risk-ml-platform
 
+## 🧰 Tech Stack
+
+- **Programming:** Python  
+- **ML & AI:** XGBoost, PyTorch, TensorFlow, Scikit-learn  
+- **GenAI:** LangChain, OpenAI GPT, Hugging Face, FAISS  
+- **MLOps:** MLflow, Docker, Kubernetes  
+- **Data:** Pandas, NumPy, PySpark  
+- **Cloud:** AWS (S3, SageMaker, EC2)  
+- **APIs:** FastAPI, Flask
+
 ## ▶️ Quick Start (Local Demo)
 ```bash
 pip install pyspark
