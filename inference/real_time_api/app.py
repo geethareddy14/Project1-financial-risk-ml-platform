@@ -1,25 +1,44 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, BackgroundTasks
+from pydantic import BaseModel, Field, validator
+from typing import Optional
 import joblib
 import numpy as np
+import json
+import time
+import logging
+from pathlib import Path
+from datetime import datetime
 
-app = FastAPI(title="Financial Risk Scoring API")
+# ─── LOGGING ──────────────────────────────────────────────
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-model = joblib.load("models/logreg.joblib")
+# ─── APP SETUP ────────────────────────────────────────────
+app = FastAPI(
+    title="Financial Risk Scoring API",
+    description="Real-time fraud detection and risk scoring for financial transactions",
+    version="2.0.0"
+)
 
-class RiskRequest(BaseModel):
-    tx_count: float
-    avg_amount: float
-    high_risk_mcc_count: float
-    account_age_days: float
-    credit_limit: float
+# ─── MODEL LOADING ────────────────────────────────────────
+MODEL_PATH = Path("models/xgb_fraud_model.joblib")
+METRICS_PATH = Path("models/metrics.json")
+THRESHOLD = 0.35
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+model = None
+model_metrics = {}
 
-@app.post("/score")
-def score(req: RiskRequest):
-    X = np.array([[req.tx_count, req.avg_amount, req.high_risk_mcc_count, req.account_age_days, req.credit_limit]])
-    risk_score = float(model.predict_proba(X)[0][1])
-    return {"risk_score": risk_score, "risk_flag": int(risk_score >= 0.5)}
+@app.on_event("startup")
+def load_model():
+    global model, model_metrics
+    try:
+        model = joblib.load(MODEL_PATH)
+        logger.info(f"✅ Model loaded from {MODEL_PATH}")
+        if METRICS_PATH.exists():
+            with open(METRICS_PATH) as f:
+                model_metrics = json.load(f)
+            logger.info(f"✅ Model metrics loaded — ROC-AUC: {model_metrics.get('roc_auc', 'N/A')}")
+    except Exception as e:
+        logger.error(f"❌ Failed to load model: {e}")
+
+# ─── REQUEST / RESPONSE SCHEMAS ──
